@@ -23,10 +23,13 @@ Pour faire fonctionner cette dernière partie sur HDFS, il suffirait d'utiliser 
 
 Pour faire une démo, il suffit de récupérer le projet :
 ` git clone <url_projet>`
+
 Aller dans le dossier Kafka_Prototype :
 ` cd Kafka_Prototype`
+
 Avoir Docker d'installer [pour l'installer](https://docs.docker.com/get-docker/) puis lancer la commande :
 ` docker-compose up`
+
 Ouvrir le notebook et éxécuter les commandes une à une.
 
 
