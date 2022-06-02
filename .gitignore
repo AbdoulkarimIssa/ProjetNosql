@@ -5,3 +5,6 @@
 Fake_Data/consumer_sink_folder/*
 Fake_Data/processed_data/*
 Fake_Data/events/*
+
+# Untrack Java IntelliJ idea file
+*.idea

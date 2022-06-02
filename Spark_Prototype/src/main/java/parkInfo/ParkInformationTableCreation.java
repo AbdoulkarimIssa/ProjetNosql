@@ -1,3 +1,5 @@
+package parkInfo;
+
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -30,6 +32,7 @@ public class ParkInformationTableCreation {
                 .appName("Joined Informations App")
                 .master("local")
                 .getOrCreate();
+
 
         // Step 1: Ingestion des données du Park
         // ---------
@@ -166,7 +169,6 @@ public class ParkInformationTableCreation {
                         .withColumnRenamed("libelle_departement", "departement_concentrateur")
                         .withColumnRenamed("libelle_region", "region_concentrateur");
 
-        //df_Park.show(100);
         return df_Park;
     }
 }

@@ -1,10 +1,13 @@
+package weeklyStatistic;
+
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import parkInfo.ParkInformationTableCreation;
 
 import static org.apache.spark.sql.functions.*;
 
-public class NumberEventPerCompteursPerDayPerType {
+public class NumberEventPerTypePerPDK {
 
     /**
      * main() is your entry point to the application.
@@ -12,7 +15,7 @@ public class NumberEventPerCompteursPerDayPerType {
      * @param args
      */
     public static void main(String[] args) {
-        NumberEventPerCompteursPerDayPerType app = new NumberEventPerCompteursPerDayPerType();
+        NumberEventPerTypePerPDK app = new NumberEventPerTypePerPDK();
         app.start();
     }
     /**
@@ -26,25 +29,33 @@ public class NumberEventPerCompteursPerDayPerType {
                 .master("local")
                 .getOrCreate();
 
+        Dataset<Row> ParkInfo = new ParkInformationTableCreation().create();
+
+
         Dataset<Row> events = spark.read().format("csv").option("header", "true")
                 .load("../Fake_Data/events/*.csv")
+                .filter(col("date_occur_evt").startsWith("2017-01"))
                 .withColumn("year", year(to_date(col("date_occur_evt"), "yyyy-MM-dd HH:mm:SS")))
                 .withColumn("month", month(to_date(col("date_occur_evt"), "yyyy-MM-dd HH:mm:SS")))
                 .withColumn("week", weekofyear(to_date(col("date_occur_evt"), "yyyy-MM-dd HH:mm:SS")))
                 .withColumn("day", dayofweek(to_date(col("date_occur_evt"), "yyyy-MM-dd HH:mm:SS")));
 
 
-        Dataset<Row> Stat = events.groupBy(
+        Dataset<Row> augmentedData = events.join(ParkInfo,
+                col("id_equipement").equalTo(col("id_compteur")), "left");
+
+        System.out.println(augmentedData.count()); // On s'attends à 8640 ligne
+
+        Dataset<Row> Stat = augmentedData.groupBy(
                 col("year"),
                 col("month"),
                 col("week"),
-                col("day"),
-                col("type_evt"),
-                col("id_equipement")
+                        col("type_evt"),
+                col("id_pdk")
                 )
                 .count();
-        Stat.show(100);
 
+        Stat.show();
     }
 
 }
