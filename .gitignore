@@ -1,0 +1,7 @@
+# Untrack python notebook checkpoints
+*.ipynb_checkpoints/
+
+# Untrack Folder created by Kafka Prototype
+Fake_Data/consumer_sink_folder/*
+Fake_Data/processed_data/*
+Fake_Data/events/*
