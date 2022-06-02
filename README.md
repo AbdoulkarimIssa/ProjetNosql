@@ -33,4 +33,13 @@ Avoir Docker d'installer [pour l'installer](https://docs.docker.com/get-docker/)
 Ouvrir le notebook et éxécuter les commandes une à une.
 
 
+### Spark Prototype
+
+Le Spark Prototype nous a permis à partir des fake data créées de :
+
+- Construire un job qui créé la table d'information sur le park de compteurs
+- Construire les jobs pour réaliser les statistiques annuelles.
+- Construire les jobs pour réaliser les statistiques mensuelles.
+- Construire les jobs pour réaliser les statistiques hebdomadaires.
+- Construire les jobs pour réaliser les statistiques journalières.
 
