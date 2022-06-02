@@ -15,4 +15,19 @@ A partir de ces données nous avons réaliser quelques proptotypes comme:
 - Un ETL Kafka qui s'occupe de générer les données envoyés au Broker Kafka via la lectures des fichiers du dossier events, puis un consumer qui lie les données envoyées au broker puis identifier la date d'occurence des evenements et les inscrires dans le bon sous dossier (partitionnement) en local. Par manque de temps nous n'avons pas utiliser le kafka connect vers le HDFS mais c'est une feature à developper.
 - Des bashs Sqoop qui simulent le rapatriement de données de bases relationnelles vers le HDFS.
 
+### Kafka prototype
+
+Ce proptotype met en scène l'ingestion de données d'un Kafka producer à partir de fichiers plats csv, l'envoi vers le Kafka Broker, la récupération et l'analyse des lignes du fichiers par le Kafka Consumer pour finir par l'écriture de façon partionnée en local. 
+
+Pour faire fonctionner cette dernière partie sur HDFS, il suffirait d'utiliser Kafka Connect avec un connecteur Sink vers HDFS.
+
+Pour faire une démo, il suffit de récupérer le projet :
+` git clone <url_projet>`
+Aller dans le dossier Kafka_Prototype :
+` cd Kafka_Prototype`
+Avoir Docker d'installer [pour l'installer](https://docs.docker.com/get-docker/) puis lancer la commande :
+` docker-compose up`
+Ouvrir le notebook et éxécuter les commandes une à une.
+
+
 
