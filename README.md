@@ -43,3 +43,11 @@ Le Spark Prototype nous a permis à partir des fake data créées de :
 - Construire les jobs pour réaliser les statistiques hebdomadaires.
 - Construire les jobs pour réaliser les statistiques journalières.
 
+
+Pour lancer les codes, il faut se créer un environement qui supporte spark, nous avons réutiliser la configuration vu en cours:
+- télécharger le dossier haddop
+- mettre les bonnes variables d'environnements:
+    - HADOOP_HOME dir_containing_hadoop_folder/hadoop
+    - Path %HADOOP_HOME%\bin
+    - Path %HADOOP_HOME%\lib
+- Avoir un jdk 11
